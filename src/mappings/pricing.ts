@@ -3,7 +3,7 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
-const WETH_ADDRESS = '0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83'
+const WETH_ADDRESS = '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83'
 const USDC_WETH_PAIR = '0x2b4c76d0dc16be1c31d4c1dc53bf9b45987fc75c' // created
 const DAI_WETH_PAIR = '0xe120ffbda0d14f3bb6d6053e90e63c572a66a428' // created block 
 const USDT_WETH_PAIR = '0x5965e53aa80a0bcf1cd6dbdd72e6a9b2aa047410' // created block 
@@ -40,24 +40,24 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x74b23882a30290451A17c44f4F05243b6b58C76d', // WETH
-  '0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E', // DAI
-  '0x04068DA6C83AFCFA0e13ba15A6696662335D5B75', // USDC
+  '0x74b23882a30290451a17c44f4f05243b6b58c76d', // WETH
+  '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e', // DAI
+  '0x04068da6c83afcfa0e13ba15a6696662335d5b75', // USDC
   '0x049d68029688eabf473097a2fc38ef61633a3c7a', // USDT
-  '0x321162Cd933E2Be498Cd2267a90534A804051b11', // wBTC
-  '0x924828a9Fb17d47D0eb64b57271D10706699Ff11', // SFI
-  '0x657A1861c15A3deD9AF0B6799a195a249ebdCbc6', // cream
-  '0xB01E8419d842beebf1b70A7b5f7142abbaf7159D', // cover
-  '0x46E7628E8b4350b2716ab470eE0bA1fa9e76c6C5', // band
-  '0x1E4F97b9f9F913c46F1632781732927B9019C68b', // crv
-  '0x56ee926bD8c72B2d5fa1aF4d9E4Cbb515a1E3Adc', // snx
-  '0x6a07A792ab2965C72a5B8088d3a069A7aC3a993B', // aave
-  '0x29b0Da86e484E1C0029B56e817912d778aC0EC69', // yfi
-  '0xb3654dc3D10Ea7645f8319668E8F54d2574FBdC8', // link
-  '0xae75A438b2E0cB8Bb01Ec1E1e376De11D44477CC', // sushi
-  '0xf16e81dce15B08F326220742020379B855B87DF9', // ice
-  '0x753fbc5800a8C8e3Fb6DC6415810d627A387Dfc9', // Badger
-  '0x08f6fE8f4dC577CF81E40E03E561d29B8b33E19b', // digg
+  '0x321162cd933e2be498cd2267a90534a804051b11', // wBTC
+  '0x924828a9fb17d47d0eb64b57271d10706699ff11', // SFI
+  '0x657a1861c15a3ded9af0b6799a195a249ebdcbc6', // cream
+  '0xb01e8419d842beebf1b70a7b5f7142abbaf7159d', // cover
+  '0x46e7628e8b4350b2716ab470ee0ba1fa9e76c6c5', // band
+  '0x1e4f97b9f9f913c46f1632781732927b9019c68b', // crv
+  '0x56ee926bd8c72b2d5fa1af4d9e4cbb515a1e3adc', // snx
+  '0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b', // aave
+  '0x29b0da86e484e1c0029b56e817912d778ac0ec69', // yfi
+  '0xb3654dc3d10ea7645f8319668e8f54d2574fbdc8', // link
+  '0xae75a438b2e0cb8bb01ec1e1e376de11d44477cc', // sushi
+  '0xf16e81dce15b08f326220742020379b855b87df9', // ice
+  '0x753fbc5800a8c8e3fb6dc6415810d627a387dfc9', // Badger
+  '0x08f6fe8f4dc577cf81e40e03e561d29b8b33e19b', // digg
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
