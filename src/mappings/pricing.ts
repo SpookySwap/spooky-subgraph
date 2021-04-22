@@ -29,7 +29,7 @@ export function getEthPriceInUSD(): BigDecimal {
     let totalLiquidityETH = daiPair.reserve0.plus(usdcPair.reserve1)
     let daiWeight = daiPair.reserve0.div(totalLiquidityETH)
     let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    return daiPair.token0Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
+    return daiPair.token1Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
     // USDC is the only pair so far
   } else if (usdcPair !== null) {
     return usdcPair.token0Price
@@ -46,26 +46,14 @@ let WHITELIST: string[] = [
   '0x04068da6c83afcfa0e13ba15a6696662335d5b75', // USDC
   '0x049d68029688eabf473097a2fc38ef61633a3c7a', // USDT
   '0x321162cd933e2be498cd2267a90534a804051b11', // wBTC
-  '0x924828a9fb17d47d0eb64b57271d10706699ff11', // SFI
-  '0x657a1861c15a3ded9af0b6799a195a249ebdcbc6', // cream
-  '0xb01e8419d842beebf1b70a7b5f7142abbaf7159d', // cover
-  '0x46e7628e8b4350b2716ab470ee0ba1fa9e76c6c5', // band
-  '0x1e4f97b9f9f913c46f1632781732927b9019c68b', // crv
-  '0x56ee926bd8c72b2d5fa1af4d9e4cbb515a1e3adc', // snx
-  '0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b', // aave
-  '0x29b0da86e484e1c0029b56e817912d778ac0ec69', // yfi
-  '0xb3654dc3d10ea7645f8319668e8f54d2574fbdc8', // link
-  '0xae75a438b2e0cb8bb01ec1e1e376de11d44477cc', // sushi
   '0xf16e81dce15b08f326220742020379b855b87df9', // ice
-  '0x753fbc5800a8c8e3fb6dc6415810d627a387dfc9', // Badger
-  '0x08f6fe8f4dc577cf81e40e03e561d29b8b33e19b', // digg
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
 let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('400000')
 
 // minimum liquidity for price to get tracked
-let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('2')
+let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('5')
 
 /**
  * Search through graph to find derived Eth per token.
@@ -109,27 +97,6 @@ export function getTrackedVolumeUSD(
   let bundle = Bundle.load('1')
   let price0 = token0.derivedETH.times(bundle.ethPrice)
   let price1 = token1.derivedETH.times(bundle.ethPrice)
-
-  // if less than 5 LPs, require high minimum reserve amount amount or return 0
-  if (pair.liquidityProviderCount.lt(BigInt.fromI32(5))) {
-    let reserve0USD = pair.reserve0.times(price0)
-    let reserve1USD = pair.reserve1.times(price1)
-    if (WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
-      if (reserve0USD.plus(reserve1USD).lt(MINIMUM_USD_THRESHOLD_NEW_PAIRS)) {
-        return ZERO_BD
-      }
-    }
-    if (WHITELIST.includes(token0.id) && !WHITELIST.includes(token1.id)) {
-      if (reserve0USD.times(BigDecimal.fromString('2')).lt(MINIMUM_USD_THRESHOLD_NEW_PAIRS)) {
-        return ZERO_BD
-      }
-    }
-    if (!WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
-      if (reserve1USD.times(BigDecimal.fromString('2')).lt(MINIMUM_USD_THRESHOLD_NEW_PAIRS)) {
-        return ZERO_BD
-      }
-    }
-  }
 
   // both are whitelist tokens, take average of both amounts
   if (WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
