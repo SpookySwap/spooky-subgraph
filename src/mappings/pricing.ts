@@ -5,8 +5,8 @@ import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
 const WETH_ADDRESS = '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83'
 const USDC_WETH_PAIR = '0x2b4c76d0dc16be1c31d4c1dc53bf9b45987fc75c' // created
-const DAI_WETH_PAIR = '0xe120ffbda0d14f3bb6d6053e90e63c572a66a428' // created block 
-const USDT_WETH_PAIR = '0x5965e53aa80a0bcf1cd6dbdd72e6a9b2aa047410' // created block 
+const DAI_WETH_PAIR = '' // 0xe120ffbda0d14f3bb6d6053e90e63c572a66a428' // created block 
+const USDT_WETH_PAIR = '' // 0x5965e53aa80a0bcf1cd6dbdd72e6a9b2aa047410' // created block 
 
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
@@ -46,7 +46,6 @@ let WHITELIST: string[] = [
   '0x04068da6c83afcfa0e13ba15a6696662335d5b75', // USDC
   '0x049d68029688eabf473097a2fc38ef61633a3c7a', // USDT
   '0x321162cd933e2be498cd2267a90534a804051b11', // wBTC
-  '0xf16e81dce15b08f326220742020379b855b87df9', // ice
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
