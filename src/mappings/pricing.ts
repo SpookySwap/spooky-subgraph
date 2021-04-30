@@ -12,20 +12,9 @@ export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
   let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token1
   let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
+  // let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
 
-  // all 3 have been created
-  if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = daiPair.reserve0.plus(usdcPair.reserve1).plus(usdtPair.reserve1)
-    let daiWeight = daiPair.reserve0.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    let usdtWeight = usdtPair.reserve1.div(totalLiquidityETH)
-    return daiPair.token1Price
-      .times(daiWeight)
-      .plus(usdcPair.token0Price.times(usdcWeight))
-      .plus(usdtPair.token0Price.times(usdtWeight))
-    // dai and USDC have been created
-  } else if (daiPair !== null && usdcPair !== null) {
+  if (daiPair !== null && usdcPair !== null) {
     let totalLiquidityETH = daiPair.reserve0.plus(usdcPair.reserve1)
     let daiWeight = daiPair.reserve0.div(totalLiquidityETH)
     let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
@@ -93,6 +82,7 @@ export function getTrackedVolumeUSD(
   let bundle = Bundle.load('1')
   let price0 = token0.derivedETH.times(bundle.ethPrice)
   let price1 = token1.derivedETH.times(bundle.ethPrice)
+
 
   // both are whitelist tokens, take average of both amounts
   if (WHITELIST.includes(token0.id) && WHITELIST.includes(token1.id)) {
