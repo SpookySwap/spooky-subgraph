@@ -32,7 +32,7 @@ export function handleNewPair(event: PairCreated): void {
     bundle.ftmPrice = ZERO_BD
     bundle.save()
   }
-  factory.pairCount = factory.pairCount + 1
+
   factory.save()
 
   // create the tokens
@@ -87,6 +87,12 @@ export function handleNewPair(event: PairCreated): void {
   }
 
   let pair = new Pair(event.params.pair.toHexString()) as Pair
+
+  if (!pair) {
+    return
+  }
+  
+  factory.pairCount = factory.pairCount + 1
   pair.token0 = token0.id
   pair.token1 = token1.id
   pair.liquidityProviderCount = ZERO_BI

@@ -32,7 +32,7 @@ import {
 function isCompleteMint(mintId: string): boolean {
   return MintEvent.load(mintId).sender !== null // sufficient checks
 }
-
+// EE test reindex
 export function handleTransfer(event: Transfer): void {
   // ignore initial transfers for first adds
   if (event.params.to.toHexString() == ADDRESS_ZERO && event.params.value.equals(BigInt.fromI32(1000))) {
@@ -268,6 +268,12 @@ export function handleSync(event: Sync): void {
 
 export function handleMint(event: Mint): void {
   let transaction = Transaction.load(event.transaction.hash.toHexString())
+
+  // safety check
+  if (transaction === null) {
+    return
+  }
+
   let mints = transaction.mints
   let mint = MintEvent.load(mints[mints.length - 1])
 
@@ -323,6 +329,12 @@ export function handleMint(event: Mint): void {
 
 export function handleBurn(event: Burn): void {
   let transaction = Transaction.load(event.transaction.hash.toHexString())
+
+  // safety check
+  if (transaction === null) {
+    return
+  }
+
   let burns = transaction.burns
   let burn = BurnEvent.load(burns[burns.length - 1])
 

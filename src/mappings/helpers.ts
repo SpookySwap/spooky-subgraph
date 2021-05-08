@@ -30,7 +30,7 @@ export function bigDecimalExp18(): BigDecimal {
 }
 
 export function convertFtmToDecimal(ftm: BigInt): BigDecimal {
-  return ftm.toBigDecimal().div(exponentToBigDecimal(18))
+  return ftm.toBigDecimal().div(exponentToBigDecimal(new BigInt(18)))
 }
 
 export function convertTokenToDecimal(tokenAmount: BigInt, exchangeDecimals: BigInt): BigDecimal {
