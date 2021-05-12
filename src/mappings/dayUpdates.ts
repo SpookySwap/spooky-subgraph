@@ -5,9 +5,9 @@ import { Pair, Bundle, Token, UniswapFactory, UniswapDayData, PairDayData, Token
 import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from './helpers'
 
 // max number of entities to store
-const maxTokenDayDatas = 10
-const maxPairDayDatas = 10
-
+const maxTokenDayDatas = 9 // ee was 10
+const maxPairDayDatas = 9 // EE was 10
+// rebuild
 export function updateUniswapDayData(event: EthereumEvent): void {
   let uniswap = UniswapFactory.load(FACTORY_ADDRESS)
   let timestamp = event.block.timestamp.toI32()
