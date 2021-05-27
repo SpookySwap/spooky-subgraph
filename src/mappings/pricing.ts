@@ -9,31 +9,12 @@ const DAI_WETH_PAIR = '0xe120ffbda0d14f3bb6d6053e90e63c572a66a428' // created bl
 const USDT_WETH_PAIR = '0x5965e53aa80a0bcf1cd6dbdd72e6a9b2aa047410' // created block 
 
 export function getEthPriceInUSD(): BigDecimal {
-  // fetch eth prices for each stablecoin
-  let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token1
-  let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
-  let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
-
-  // all 3 have been created
-  if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
-    let totalLiquidityETH = daiPair.reserve0.plus(usdcPair.reserve1).plus(usdtPair.reserve1)
-    let daiWeight = daiPair.reserve0.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    let usdtWeight = usdtPair.reserve1.div(totalLiquidityETH)
-    return daiPair.token1Price
-      .times(daiWeight)
-      .plus(usdcPair.token0Price.times(usdcWeight))
-      .plus(usdtPair.token0Price.times(usdtWeight))
-    // dai and USDC have been created
-  } else if (daiPair !== null && usdcPair !== null) {
-    let totalLiquidityETH = daiPair.reserve0.plus(usdcPair.reserve1)
-    let daiWeight = daiPair.reserve0.div(totalLiquidityETH)
-    let usdcWeight = usdcPair.reserve1.div(totalLiquidityETH)
-    return daiPair.token1Price.times(daiWeight).plus(usdcPair.token0Price.times(usdcWeight))
-    // USDC is the only pair so far
-  } else if (usdcPair !== null) {
+  //For now we will only use USDC_WETH pair for ETH prices
+  let usdcPair = Pair.load(USDC_WETH_PAIR);
+  if (usdcPair !== null) {
     return usdcPair.token0Price
-  } else {
+  }
+  else {
     return ZERO_BD
   }
 }
@@ -91,9 +72,9 @@ export function getTrackedVolumeUSD(
   token0: Token,
   tokenAmount1: BigDecimal,
   token1: Token,
-  pair: Pair
+  bundle: Bundle
 ): BigDecimal {
-  let bundle = Bundle.load('1')
+  // let bundle = Bundle.load('1')
   let price0 = token0.derivedETH.times(bundle.ethPrice)
   let price1 = token1.derivedETH.times(bundle.ethPrice)
 
@@ -129,9 +110,10 @@ export function getTrackedLiquidityUSD(
   tokenAmount0: BigDecimal,
   token0: Token,
   tokenAmount1: BigDecimal,
-  token1: Token
+  token1: Token,
+  bundle: Bundle
 ): BigDecimal {
-  let bundle = Bundle.load('1')
+  // let bundle = Bundle.load('1')
   let price0 = token0.derivedETH.times(bundle.ethPrice)
   let price1 = token1.derivedETH.times(bundle.ethPrice)
 
