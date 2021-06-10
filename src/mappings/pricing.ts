@@ -33,7 +33,7 @@ let WHITELIST: string[] = [
 let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('400000')
 
 // minimum liquidity for price to get tracked
-let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('5')
+let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('4000')
 
 /**
  * Search through graph to find derived Eth per token.
