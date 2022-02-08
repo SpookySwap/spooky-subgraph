@@ -3,9 +3,11 @@ description: SpookySwap is a decentralized protocol for automated token exchange
 repository: https://github.com/SpookySwap/spooky-subgraph
 schema:
   file: ./schema.graphql
+features:
+  - grafting
 graft:
   base: QmPJbGjktGa7c4UYWXvDRajPxpuJBSZxeQK5siNT3VpthP
-  block: 16716601
+  block: 30000000
 dataSources:
   - kind: ethereum/contract
     name: Factory

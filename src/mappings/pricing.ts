@@ -26,7 +26,7 @@ let WHITELIST: string[] = [
   '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e', // DAI
   '0x04068da6c83afcfa0e13ba15a6696662335d5b75', // USDC
   '0x049d68029688eabf473097a2fc38ef61633a3c7a', // USDT
-  '0x321162cd933e2be498cd2267a90534a804051b11', // wBTC
+  //'0x321162cd933e2be498cd2267a90534a804051b11', // wBTC
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
