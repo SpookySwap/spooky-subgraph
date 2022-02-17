@@ -3,7 +3,7 @@ import { log, BigInt, BigDecimal, Address, ethereum } from '@graphprotocol/graph
 import { ERC20 } from '../types/Factory/ERC20'
 import { ERC20SymbolBytes } from '../types/Factory/ERC20SymbolBytes'
 import { ERC20NameBytes } from '../types/Factory/ERC20NameBytes'
-import { User, Bundle, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair } from '../types/schema'
+import { User, Bundle, Token, LiquidityPosition, Pair } from '../types/schema'
 import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
@@ -148,30 +148,4 @@ export function createUser(address: Address): void {
     user.usdSwapped = ZERO_BD
     user.save()
   }
-}
-
-export function createLiquiditySnapshot(position: LiquidityPosition, event: ethereum.Event): void {
-  let timestamp = event.block.timestamp.toI32()
-  let bundle = Bundle.load('1')
-  let pair = Pair.load(position.pair)
-  let token0 = Token.load(pair.token0)
-  let token1 = Token.load(pair.token1)
-
-  // create new snapshot
-  let snapshot = new LiquidityPositionSnapshot(position.id.concat(timestamp.toString()))
-  // snapshot.liquidityPosition = position.id
-  snapshot.timestamp = timestamp
-  snapshot.block = event.block.number.toI32()
-  snapshot.user = position.user
-  snapshot.pair = position.pair
-  snapshot.token0PriceUSD = token0.derivedETH.times(bundle.ethPrice)
-  snapshot.token1PriceUSD = token1.derivedETH.times(bundle.ethPrice)
-  snapshot.reserve0 = pair.reserve0
-  snapshot.reserve1 = pair.reserve1
-  snapshot.reserveUSD = pair.reserveUSD
-  snapshot.liquidityTokenTotalSupply = pair.totalSupply
-  snapshot.liquidityTokenBalance = position.liquidityTokenBalance
-  snapshot.liquidityPosition = position.id
-  snapshot.save()
-  // position.save()
 }

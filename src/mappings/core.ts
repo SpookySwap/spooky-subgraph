@@ -22,7 +22,6 @@ import {
   createLiquidityPosition,
   ZERO_BD,
   BI_18,
-  createLiquiditySnapshot
 } from './helpers'
 
 function isCompleteMint(mintId: string): boolean {
