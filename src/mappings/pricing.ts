@@ -4,9 +4,7 @@ import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
 const WETH_ADDRESS = '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83'
-const USDC_WETH_PAIR = '0x2b4c76d0dc16be1c31d4c1dc53bf9b45987fc75c' // created
-const DAI_WETH_PAIR = '0xe120ffbda0d14f3bb6d6053e90e63c572a66a428' // created block 
-const USDT_WETH_PAIR = '0x5965e53aa80a0bcf1cd6dbdd72e6a9b2aa047410' // created block 
+const USDC_WETH_PAIR = '0xA196C7754f4ec79dE55bB5Db82187bBE82275f7f' // created
 
 export function getEthPriceInUSD(): BigDecimal {
   //For now we will only use USDC_WETH pair for ETH prices
@@ -23,10 +21,10 @@ export function getEthPriceInUSD(): BigDecimal {
 let WHITELIST: string[] = [
   '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', // wftm
   '0x04068da6c83afcfa0e13ba15a6696662335d5b75', // USDC
-  '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e', // DAI
-  '0x74b23882a30290451a17c44f4f05243b6b58c76d', // WETH
-  '0x049d68029688eabf473097a2fc38ef61633a3c7a', // USDT
-  //'0x321162cd933e2be498cd2267a90534a804051b11', // wBTC
+  '0x1B6382DBDEa11d97f24495C9A90b7c88469134a4', // axlUSDC
+  '0xfe7eDa5F2c56160d406869A8aA4B2F365d544C7B', // axlETH
+  '0x28a92dde19D9989F39A49905d7C9C2FAc7799bDf', // lzUSDC
+  '0x695921034f0387eAc4e11620EE91b1b15A6A09fE', // lzETH
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
