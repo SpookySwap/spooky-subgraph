@@ -8,9 +8,9 @@ dataSources:
     name: Factory
     network: fantom
     source:
-      address: '0x152eE697f2E276fA89E96742e9bB9aB1F2E61bE3'
+      address: '0xee4bc42157cf65291ba2fe839ae127e3cc76f741'
       abi: Factory
-      startBlock: 3795376
+      startBlock: 23534368
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
