@@ -12,7 +12,7 @@ export function getEthPriceInUSD(): BigDecimal {
   //For now we will only use USDC_WETH pair for ETH prices
   let usdcPair = Pair.load(USDC_WETH_PAIR);
   if (usdcPair !== null) {
-    return usdcPair.token0Price
+    return usdcPair.token1Price
   }
   else {
     return ZERO_BD
