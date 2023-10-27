@@ -3,10 +3,10 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
-const WETH_ADDRESS = '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83'
-const USDC_WETH_PAIR = '0x2b4c76d0dc16be1c31d4c1dc53bf9b45987fc75c' // created
-const DAI_WETH_PAIR = '0xe120ffbda0d14f3bb6d6053e90e63c572a66a428' // created block 
-const USDT_WETH_PAIR = '0x5965e53aa80a0bcf1cd6dbdd72e6a9b2aa047410' // created block 
+const WETH_ADDRESS = '0xf5cb8652a84329a2016a386206761f455bcedab6'
+const USDC_WETH_PAIR = '0x5f7e79b3ed397ccca274f0cec6ac0517c2173c68' // created
+//const DAI_WETH_PAIR = '0xe120ffbda0d14f3bb6d6053e90e63c572a66a428' // created block 
+//const USDT_WETH_PAIR = '0x5965e53aa80a0bcf1cd6dbdd72e6a9b2aa047410' // created block 
 
 export function getEthPriceInUSD(): BigDecimal {
   //For now we will only use USDC_WETH pair for ETH prices
@@ -21,9 +21,8 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
-  '0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83', // wftm
-  '0x04068da6c83afcfa0e13ba15a6696662335d5b75', // USDC
-  '0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e', // DAI
+  '0xf5cb8652a84329a2016a386206761f455bcedab6', // wftm
+  '0x07ca47917dc05f84b44c629a54247e45a88bf2f4', // USDC
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
